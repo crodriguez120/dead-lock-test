@@ -1,3 +1,5 @@
+const db = require("../data/db");
+
 const { createOrderService, removeOrderItemService, updateOrderItemQuantityService } = require("../services/order.service");
 
 const createOrder = (req, res) => {
@@ -48,8 +50,31 @@ const removeOrderItem = (req, res) => {
     }
 }
 
+const getOrders = (_, res) => {
+  return res.json(db.orders);
+};
+
+const getOrderById = (req, res) => {
+  const { orderId } = req.params;
+
+  const order = db.orders.find(
+    (order) => order.id === Number(orderId)
+  );
+
+  if (!order) {
+    return res.status(404).json({
+      message: "Order not found",
+    });
+  }
+
+  return res.json(order);
+};
+
+
 module.exports = {
     createOrder,
     updateOrderItemQuantity,
-    removeOrderItem
+    removeOrderItem,
+    getOrders,
+    getOrderById,
 }

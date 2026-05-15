@@ -3,7 +3,9 @@ const express = require("express");
 const {  
 createOrder,
 removeOrderItem,
-updateOrderItemQuantity
+updateOrderItemQuantity,
+getOrders,
+getOrderById
 } = require("../controllers/order.controller");
 
 const router = express.Router();
@@ -12,12 +14,16 @@ router.post("/", createOrder);
 
 router.patch(
     "/:orderId/items/:productId",
-    removeOrderItem
+    updateOrderItemQuantity
 )
 
 router.delete(
     "/:orderId/items/:productId",
     removeOrderItem
 )
+
+router.get("/", getOrders);
+
+router.get("/:orderId", getOrderById);
 
 module.exports = router;
