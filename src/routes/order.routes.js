@@ -6,7 +6,7 @@ removeOrderItem,
 updateOrderItemQuantity
 } = require("../controllers/order.controller");
 
-const router = express.Router;
+const router = express.Router();
 
 router.post("/", createOrder);
 

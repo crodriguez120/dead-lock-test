@@ -5,7 +5,7 @@ createCustomer,
 getCustomers
 } = require("../controllers/customer.controller");
 
-const router = express.Router;
+const router = express.Router();
 
 router.post("/", createCustomer);
 

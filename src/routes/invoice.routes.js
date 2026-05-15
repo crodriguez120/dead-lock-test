@@ -4,7 +4,7 @@ const {
 generateInvoice
 } = require("../controllers/invoice.controller");
 
-const router = express.Router;
+const router = express.Router();
 
 router.post("/:orderId", generateInvoice);
 
